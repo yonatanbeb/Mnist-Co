@@ -1,17 +1,15 @@
 import argparse
 import json
-import sys
-sys.path.append('../')
-from catalog_generator import images
-from system_clearance import auto_encode, predict
+from system.catalog_generator import images
+from system.system_clearance import auto_encode, predict
 
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('item_code', type=int, help='catalog code of query item => check out catalog by typing: browse')
 
-    with open('session_data/surfer.json') as current_clearance_level_json:
-        current_clearance_level = json.load(current_clearance_level_json)
+    with open('session_data/surfer.json') as surfer_json:
+        current_clearance_level, _ = json.load(surfer_json)
 
     args = parser.parse_args()
 

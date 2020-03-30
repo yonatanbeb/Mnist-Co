@@ -10,7 +10,8 @@ def main():
     with open('session_data/surfer.json', 'w') as surfer:
         surfer.write(surfer_json)
 
-    os.system('echo "$(tput setaf 196)mnist&Co@ $(tput setaf 202)Guest : $(tput setaf 178)" > ./session_data/prompt')
+    os.system('echo "$(tput setaf 196)mnist&Co@ $(tput setaf 202)' + current_user +
+              ' : $(tput setaf 178)" > ./session_data/prompt')
 
 
 if __name__ == '__main__':

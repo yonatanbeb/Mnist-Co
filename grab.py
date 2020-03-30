@@ -1,18 +1,15 @@
-import os
 import argparse
 import json
+import os
 from PIL import Image
-import sys
-sys.path.append('../')
-from catalog_generator import images
-from system_clearance import auto_encode, predict
+from system.catalog_generator import images
+from system.system_clearance import auto_encode, predict
 
 
 label1 = ['T-Shirt', 'Trouser', 'Pullover', 'Dress', 'Coat', 'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Boot']
 label0 = ['Top', 'Bottom', 'Shoe']
 
 
-# TODO: problem with arguments
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('label', choices=(label1 + label0), help='request type of item')
@@ -21,8 +18,8 @@ def main():
     group.add_argument('-a', '--all', action='store_true', help='grab all items of requested Label')
     parser.add_argument('to_path', type=str, help='directory to store your items in')
 
-    with open('session_data/surfer.json') as current_clearance_level_json:
-        current_clearance_level, current_user = json.load(current_clearance_level_json)
+    with open('session_data/surfer.json') as surfer_json:
+        current_clearance_level, current_user = json.load(surfer_json)
 
     args = parser.parse_args()
 
@@ -34,7 +31,7 @@ def main():
         # if user has clearance level 1, user can also search level 0 labels
         if current_clearance_level == 1 and args.label in label0:
             current_clearance_level = 0
-        if os.path.exists(current_user):
+        if not os.path.exists(current_user):
             os.system('mkdir ' + current_user)
         os.system('mkdir ' + current_user + '/' + args.to_path)
         if args.all:

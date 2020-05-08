@@ -11,7 +11,7 @@ pip install -r requirements.txt
 
 ## Usage
 
-To start session:
+Start session by typing:
 
 ```bash
 . ./init.sh

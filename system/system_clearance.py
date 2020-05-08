@@ -1,3 +1,4 @@
+""" encoding and predicting mechanisms for Mnist&Co CLU """
 import os
 import numpy as np
 from random import randrange

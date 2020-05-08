@@ -4,7 +4,9 @@ from PIL import Image
 (images, _), (_, _) = fashion_mnist.load_data()
 images = images[:100]
 
-generate = False
+# creates directory with all fashion_mnist images
+# one time use
+generate = True
 if generate:
     for i in range(100):
         image = Image.fromarray(images[i])
